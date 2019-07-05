@@ -57,6 +57,12 @@ activitydata <- read.csv("data/activity.csv")
 
 ```r
 StepsPerDay <- tapply(activitydata$steps, activitydata$date, sum)
+head(StepsPerDay)
+```
+
+```
+## 2012-10-01 2012-10-02 2012-10-03 2012-10-04 2012-10-05 2012-10-06 
+##         NA        126      11352      12116      13294      15420
 ```
 
 2. If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day. 
@@ -73,6 +79,19 @@ hist(StepsPerDay, xlab = "Number of Steps", main = "Histogram: Steps per Day")
 ```r
 MeanPerDay <- mean(StepsPerDay, na.rm = TRUE)
 MedianPerDay <- median(StepsPerDay, na.rm = TRUE)
+MeanPerDay
+```
+
+```
+## [1] 10766.19
+```
+
+```r
+MedianPerDay
+```
+
+```
+## [1] 10765
 ```
 
 
@@ -96,6 +115,20 @@ plot(as.numeric(names(StepsPerInterval)),
 ```r
 maxInterval <- names(sort(StepsPerInterval, decreasing = TRUE)[1])
 maxSteps <- sort(StepsPerInterval, decreasing = TRUE)[1]
+maxInterval
+```
+
+```
+## [1] "835"
+```
+
+```r
+maxSteps
+```
+
+```
+##      835 
+## 206.1698
 ```
 ## Imputing missing values
 
@@ -104,6 +137,11 @@ maxSteps <- sort(StepsPerInterval, decreasing = TRUE)[1]
 
 ```r
 NA.vals <- sum(is.na(activitydata$steps))
+NA.vals
+```
+
+```
+## [1] 2304
 ```
 
 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
@@ -143,12 +181,21 @@ hist(StepsPerDay.imputed, xlab = "Number of Steps", main = "Histogram: Steps per
 ```r
 MeanPerDay.imputed <- mean(StepsPerDay.imputed, na.rm = TRUE)
 MedianPerDay.imputed <- median(StepsPerDay.imputed, na.rm = TRUE)
+MeanPerDay.imputed
 ```
 
-Type of Estimate | Mean_Steps | Median_Steps
---- | --- | ---
-First Part (with na) | 10765 | 10765
-Second Part (fillin in na with median) | 9354.23 | 10395
+```
+## [1] 10766.19
+```
+
+```r
+MedianPerDay.imputed
+```
+
+```
+## [1] 10766.19
+```
+
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
